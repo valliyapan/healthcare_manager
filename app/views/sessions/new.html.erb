@@ -1,0 +1,16 @@
+<div class="block">
+  <p class="welcome-head">Sign-in</p>
+  <section class="signin-section">
+    <%= form_with url: sessions_path do |form| %>
+      <div class="signin-fields">
+        <%= form.label :email, "Email:", class: "labels" %>
+        <%= form.email_field :email, class: "fields" %>
+      </div>
+      <div class="signin-fields">
+        <%= form.label :password, "Password:", class: "labels" %>
+        <%= form.password_field :password, class: "fields" %>
+      </div>
+      <%= form.submit "Sign-in", class: "buttons" %>
+    <% end %>
+  </section>
+</div>

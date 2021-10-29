@@ -1,0 +1,35 @@
+<section class="block">
+    <h3 class="welcome-head head">Create new user</h3>
+    <section class="signup-section">
+      <%= form_with url: "/users", method: :post do |form| %>
+        <div class="signup-fields">
+          <%= form.label :name, "Name:", class: "labels" %>
+          <%= form.text_field :name, class: "fields" %>
+        </div>
+        <div class="signup-fields">
+          <%= form.label :email, "Email:", class: "labels" %>
+          <%= form.email_field :email, class: "fields" %>
+        </div>
+        <div class="signup-fields">
+          <%= form.label :password, "Password:", class: "labels" %>
+          <%= form.password_field :password, class: "fields" %>
+        </div>
+        <div class="signup-fields">
+          <%= form.label :role, "Role:", class: "labels" %>
+          <%= form.text_field :role, class: "fields" %>
+        </div>
+        <div class="signup-gender">
+          <p class="gender-head">Gender</p>
+          <div class="radio-button-div">
+            <%= form.radio_button :gender, "male", class: "radio-button" %>
+            <%= form.label :male, "Male" %>
+          </div>
+          <div class="radio-button-div">
+            <%= form.radio_button :gender, "female", class: "radio-button" %>
+            <%= form.label :female, "Female" %>
+          </div>
+        </div>
+        <%= form.submit :Create, class: "buttons" %>
+      <% end %>
+    </section>
+</section>

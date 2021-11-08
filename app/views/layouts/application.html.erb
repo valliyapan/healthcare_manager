@@ -8,9 +8,31 @@
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   </head>
 
   <body>
+    <div class="s_header">
+      <h1>Meenakshi Hospitals</h1>
+    </div>
+    <div class="s_option_pane">
+      <%= link_to "Sign-out", destroy_session_path , method: "delete",class: "s_signout" %>
+      <%= link_to "Appointment History", appointments_path, method: "get",class: "s_history" %>
+        
+    </div>
+    <% if flash[:notice] %>
+      <p class="s_flash_notice"> <%= flash[:notice] %></p>
+    <% end %>
+
+    <% if flash[:error] %>
+      <p class="s_flash_error"> <%= flash[:error] %></p>
+    <% end %>
+
     <%= yield %>
+    <footer>
+
+    </footer>
   </body>
 </html>

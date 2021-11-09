@@ -1,0 +1,52 @@
+<section class="block">
+    <h1 class="welcome-head head">Healthcare Manager</h1>
+    <div class="Doctor-NavigationButtons">
+        <%= form_with url: "/signout", method: :delete do |f| %>
+            <%= f.submit "Sign out", class: "buttons" %>
+        <% end %>
+        <%= link_to "Home", "/", class: "buttons" %>
+    </div>
+    <div class="Upcoming-appointments">
+        <p>Upcoming Appointments</p>
+        <table class="Appointments-table">
+            <tr>
+                <th>Name</th>
+                <th>Time</th>
+                <th>Details</th>
+            </tr>
+            <% @current_user.doctor.first_five.each do |t| %>
+                <tr>
+                    <td><%= t.patient.user.name %></td>
+                    <td><%= t.appointment_time.to_s(:long) %></td>
+                    <td><%= link_to "Details", "/" , class: "buttons" %></td>
+                </tr>
+            <% end %>
+        </table>
+    </div>
+    <div class="Schedule">
+        <p class="Schedule-head">Schedule</p>
+        <%= form_with url: "/doctors/#{@current_user.doctor.id}/edit", method: :get, class: "Doctor-edit-button" do |form| %>
+            <%= form.submit "Edit Profile", class: "buttons" %>
+        <% end %>
+        <table class="Schedule-table cursor-type">
+            <tr>
+                <th>Day</th>
+                <% 11.times.each do |t| %>
+                    <th><%= t+1 %></th>
+                <% end %>
+            </tr>
+            <% 7.times.each do |t| %>
+                <tr>
+                    <td>
+                        <%= Doctor.day(t) %>
+                    </td>
+                    <% 11.times.each do |i| %>
+                        <td class= '<%= @current_user.doctor.available(t,i) ? "available-slot" : "not-available-slot" %>'>
+                            <%= "#{i+9} : #{i+10}" %>
+                        </td>
+                    <% end %>
+                </tr>
+            <% end %>
+        </table>
+    </div>
+</section>

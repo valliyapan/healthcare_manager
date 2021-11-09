@@ -10,7 +10,7 @@
   font-size: 36px;
 }
 .head{
-  margin-top: 120px;
+  margin-top: -25px;
 }
 .button-section{
   display: flex;
@@ -22,9 +22,10 @@
   border-radius: 5px;
   background: rgb(68, 196, 18);
   color: white;
-  padding: 16px 18px;
+  padding: 12px 14px;
   font-size: 24px;
   border: 0;
+  cursor: pointer;
 }
 .signin-section, .signup-section{
   display: flex;

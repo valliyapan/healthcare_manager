@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  skip_before_action :verify_authenticity_token
+  skip_before_action :ensure_user_login
   def index
     render :index
   end
@@ -14,14 +14,22 @@ class UsersController < ApplicationController
     password = params[:password]
     role = params[:role]
     gender = params[:gender]
-    User.create!(
+    user = User.new(
       name: name,
       email: email,
       password: password,
       role: role,
       gender: gender
     )
-    redirect_to users_path
+    if user.save
+      session[:current_user_id] = user.id
+      if user.role == "doctor"
+        redirect_to doctors_path
+      end
+    else
+      session[:error] = user.errors.full_message.join("\n")
+      redirect_to "/"
+    end
   end
 
   def destroy

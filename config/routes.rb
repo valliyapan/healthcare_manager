@@ -5,4 +5,5 @@ Rails.application.routes.draw do
   resources :doctors
   get "/signin" => "sessions#new"
   post "/signin" => "sessions#create", as: :sessions
+  delete "/signout" => "sessions#destroy"
 end

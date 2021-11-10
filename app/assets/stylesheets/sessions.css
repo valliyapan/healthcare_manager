@@ -31,15 +31,23 @@
   display: flex;
   justify-content: center;
 }
-.labels, .gender-head{
+.labels, .gender-head, .profile-labels{
   margin-bottom: 15px;
 }
-.fields{
+.profile-labels{
+  font-size: 22px;
+}
+.Profile-head{
+  text-align: center;
+  margin-bottom: 15px;
   font-size: 24px;
+}
+.fields{
+  font-size: 22px;
   padding: 8px 7px;
 }
 .signin-fields, .signup-fields{
-  font-size: 26px;
+  font-size: 22px;
   margin-bottom: 25px;
   display: grid;
 }
@@ -49,9 +57,37 @@
 }
 .radio-button-div{
   display: flex;
-  align-content: center;
+  justify-content: space-around;
   margin-bottom: 15px;
 }
+.radio-edit{
+  margin-right: -65px;
+}
 .radio-button{
-  margin-right: 15px;
+  margin-right: -15px;
+}
+.Flash-error{
+  color: #721c24;
+  margin-bottom: 1.2vw;
+  font-size: 1.2vw;
+  line-height: 1.6vw;
+  text-align: center;
+  background-color: #f8d7da;
+  border: 1.2px solid #721c24;
+  border-radius: 0.4vw;
+  padding: 0.4vw;
+  width: 29vw;
+  margin: 3% auto;
+}
+.Flash-notice{
+font-size: 1.2vw;
+line-height: 1.6vw;
+border-radius: 0.4vw;
+padding: 0.4vw;
+width: 52vw;
+margin: 3% auto;
+text-align: center;
+color: #155724;
+border: 1.2px solid #155724;
+background-color: #8fc79c;
 }

@@ -27,8 +27,8 @@ class UsersController < ApplicationController
         redirect_to doctors_path
       end
     else
-      session[:error] = user.errors.full_message.join("\n")
-      redirect_to "/"
+      flash[:error] = user.errors.full_messages.join(", ")
+      redirect_to new_user_path
     end
   end
 
@@ -37,4 +37,6 @@ class UsersController < ApplicationController
     User.find(id).destroy
     redirect_to users_path
   end
+
+
 end

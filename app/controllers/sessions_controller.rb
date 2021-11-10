@@ -1,18 +1,22 @@
 class SessionsController < ApplicationController
-  skip_before_action :ensure_user_logged_in
-
+  skip_before_action :ensure_user_login
+  
   def new
   end
 
   def create
     user = User.find_by(email: params[:email])
-    if user && user.authenticate(params[:password]) && user.role=="Patient"
+    if user && user.authenticate(params[:password])
       session[:current_user_id] = user.id
-      flash[:notice] = "Login Successful!!"
-      redirect_to "/"
+      flash[:notice] = user.name + " signed in successfully!"
+      if user.role == "doctor"
+        redirect_to doctors_path
+      elsif user.role == "patient"
+        redirect_to "/"
+      end
     else
-      flash[:error] = "Your login attempt is invalid . Please retry"
-      redirect_to new_sessions_path
+      flash[:error] = "Invalid credentials"
+      redirect_to sessions_path
     end
   end
 

@@ -9,6 +9,14 @@ class Doctor < ApplicationRecord
     appointments.where(status: false).take(5)
   end
 
+  def unseen
+    appointments.where(status: false)
+  end
+
+  def seen
+    appointments.where(status: true)
+  end
+
   def self.day(t)
     Date.today.next_day(t).strftime("%a %d %b").to_s
   end
@@ -21,6 +29,7 @@ class Doctor < ApplicationRecord
     end
   end
 
+  
   def booked(day,slot)
     appointments.where(status:  false).each do |appointment|
       diff = ((appointment.appointment_time - DateTime.now)/(24*3600)).round
@@ -30,6 +39,7 @@ class Doctor < ApplicationRecord
     end
     false
   end
+  
 
   def find_day(t)
     t = (t + Date.today.cwday - 1).modulo(7)

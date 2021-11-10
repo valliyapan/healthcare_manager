@@ -1,11 +1,6 @@
 class HomeController < ApplicationController
-  skip_before_action :ensure_user_logged_in
-
+  skip_before_action :ensure_user_login
   def index
-    if current_user
-      redirect_to patients_path
-    else
-      render "index"
-    end
+    render :index
   end
 end

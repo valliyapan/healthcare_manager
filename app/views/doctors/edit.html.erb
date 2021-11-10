@@ -1,0 +1,81 @@
+<section class="block">
+    <h1 class="welcome-head head">Healthcare Manager</h1>
+    <div class="Doctor-NavigationButtons">
+        <%= link_to "Back", doctors_path, class: "buttons" %>
+        <%= link_to "Home", "/doctors/home", class: "buttons" %>
+    </div>
+    <div class="Schedule">
+        <p class="Schedule-head">Edit Schedule</p>
+        <table class="Schedule-table">
+            <tr>
+                <th>Day</th>
+                <% 11.times.each do |t| %>
+                    <th><%= t+1 %></th>
+                <% end %>
+            </tr>
+            <% 7.times.each do |t| %>
+                <tr>
+                    <td>
+                        <%= Doctor.day(t) %>
+                    </td>
+                    <% 11.times.each do |i| %>
+                        <% if t > 2 %>
+                            <%= form_with url: "/doctors/#{@current_user.doctor.id}",id: "#{t},#{i}", method: :put do |form| %>
+                                <td class= '<%= @current_user.doctor.available(t,i) ? "available-slot" : "not-available-slot" %> cursor-available' onclick='document.getElementById("<%= "#{t},#{i}" %>").submit()' >
+                                    <%= form.hidden_field :td, value: "#{t},#{i}" %>
+                                    <%= "#{i+9} : #{i+10}" %>
+                                </td>
+                            <% end %>
+                        <% else %>
+                            <td class= '<%= @current_user.doctor.available(t,i) ? "available-slot" : "not-available-slot" %> no-cursor' >
+                                <%= "#{i+9} : #{i+10}" %>
+                            </td>
+                        <% end %>
+                    <% end %>
+                </tr>
+            <% end %>
+        </table>
+    </div>
+    <hr>
+    <div class="EditProfile">
+        <p class="EditProfile-head">Edit Profile</p>
+        <section class="signup-section">
+            <%= form_with url: "/doctors/#{@current_user.id}", method: :put do |form| %>
+                <div class="signup-fields">
+                    <%= form.label :name, "Name:", class: "labels" %>
+                    <%= form.text_field :name, class: "fields" %>
+                </div>
+                <div class="signup-fields">
+                    <%= form.label :email, "Email:", class: "labels" %>
+                    <%= form.email_field :email, class: "fields" %>
+                </div>
+                <div class="signup-fields">
+                    <%= form.label :password, "Password: (Enter old or new password)", class: "labels" %>
+                    <%= form.password_field :password, class: "fields" %>
+                </div>
+                <div class="signup-gender">
+                    <p class="gender-head">Gender</p>
+                    <div class="radio-button-div">
+                        <%= form.radio_button :gender, "male", class: "radio-edit" %>
+                        <%= form.label :male, "Male" %>
+                        <%= form.radio_button :gender, "female", class: "radio-edit" %>
+                        <%= form.label :female, "Female" %>
+                    </div>
+                </div>
+                <%= form.submit :Save, class: "buttons" %>
+            <% end %>
+        </section>
+    </div>
+</section>
+
+<script>
+    window.onload = function myfun() {
+        var name = document.getElementById("name");
+        name.value = "<%= @current_user.name %>";
+        name = document.getElementById("email");
+        name.value = "<%= @current_user.email %>";
+        var gender = "<%= @current_user.gender %>";
+        name = document.getElementById("gender_"+gender);
+        name.checked = true;
+    }
+</script>

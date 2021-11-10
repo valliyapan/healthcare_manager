@@ -58,3 +58,67 @@
 .Schedule-table th{
   text-align: center;
 }
+.Upcoming-appointments, .appointments-list{
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 24px;
+}
+.Doctor-NavigationButtons{
+    display: flex;
+    justify-content: space-between;
+}
+.Appointments-table{
+  text-align: initial;
+  margin: auto;
+  border-collapse: separate;
+  border-spacing: 40px;
+}
+.Schedule-table{
+  text-align: initial;
+  margin: auto;
+  border-collapse: collapse;
+  margin-bottom: 30px;
+}
+.Schedule-table, .Schedule-table th, .Schedule-table td{
+  border: 1px solid black;
+  padding: 20px 15px;
+}
+.cursor-type{
+  cursor: default;
+}
+.available-slot{
+  background-color:chartreuse;
+}
+.not-available-slot{
+  background-color: gray;
+}
+.Schedule-head, .EditProfile-head{
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 5px;
+}
+.Doctor-edit-button{
+  display: flex;
+  justify-content: right;
+  margin-bottom: 10px;
+}
+.no-cursor{
+  cursor: no-drop;
+}
+.cursor-available{
+  cursor: pointer;
+}
+.EditProfile{
+  margin-bottom: 45px;
+  margin-top: 30px;
+}
+.Profile, .appointments-list, .Details-div{
+  margin-top: 20px;
+  display: grid;
+  margin-bottom: 20px;
+}
+.Details-div{
+  margin-left: 60px;
+  margin-top: 50px;
+}
+

@@ -1,21 +1,29 @@
-<p class="NewUsers-title"> Welcome New user!!</p>
-
-<section class="UsersNew">
-  <%= form_with url: users_path do |form|%>
-    <div class="Form-section">
-      <p class="Form-InputLabel">First Name: </p>
-      <%= form.text_field :name , class: "Form-input",autofocus: "autofocus"%>
-    </div>
-    <div class="Form-section">
-      <p class="Form-InputLabel">Email Id: </p>
-      <%= form.email_field :email, class: "Form-input"%>
-    </div>
-    <div class="Form-section">
-      <p class="Form-InputLabel">Password: </p>
-      <%= form.password_field :password, class: "Form-input"%>
-    </div>
-    <div class="Form-section">
-      <%= form.submit "Sign-Up" ,class: "Form-submit"%>
-    </div>
-  <% end %>
+<section class="block">
+    <h3 class="welcome-head head">Create new user</h3>
+    <section class="signup-section">
+      <%= form_with url: "/users", method: :post do |form| %>
+        <div class="signup-fields">
+          <%= form.label :name, "Name:", class: "labels" %>
+          <%= form.text_field :name, class: "fields" %>
+        </div>
+        <div class="signup-fields">
+          <%= form.label :email, "Email:", class: "labels" %>
+          <%= form.email_field :email, class: "fields" %>
+        </div>
+        <div class="signup-fields">
+          <%= form.label :password, "Password:", class: "labels" %>
+          <%= form.password_field :password, class: "fields" %>
+        </div>
+        <div class="signup-gender">
+          <p class="gender-head">Gender</p>
+          <div class="radio-button-div">
+            <%= form.radio_button :gender, "male", class: "radio-button" %>
+            <%= form.label :male, "Male" %>
+            <%= form.radio_button :gender, "female", class: "radio-button" %>
+            <%= form.label :female, "Female" %>
+          </div>
+        </div>
+        <%= form.submit :Create, class: "buttons" %>
+      <% end %>
+    </section>
 </section>

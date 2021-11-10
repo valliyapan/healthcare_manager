@@ -14,27 +14,33 @@
   </head>
 
   <body>
-    <div class="s_header">
-      <h1>Healthcare Manager</h1>
-    </div>
-    <% if @current_user %>
+    <% if @current_user && @current_user.role == "patient" %>
+      <div class="s_header">
+        <h1>Healthcare Manager</h1>
+      </div>
+    <% end %>
+    
+    <% if @current_user && @current_user.role == "patient" %>
       <div class="s_option_pane">
         <%= link_to "Home", patients_path , method: "get",class: "s_home" %>
         <%= link_to "Appointment History", appointments_path, method: "get",class: "s_history" %>
         <%= link_to "Sign-out", destroy_session_path , method: "delete",class: "s_signout" %>
       </div>
     <% end %>
-    <% if flash[:notice] %>
-      <p class="s_flash_notice"> <%= flash[:notice] %></p>
-    <% end %>
 
     <% if flash[:error] %>
-      <p class="s_flash_error"> <%= flash[:error] %></p>
+      <p class= "Flash-error">
+        <%= flash[:error] %>
+      </p>
     <% end %>
-
+  
+    <% if flash[:notice] %>
+      <p class= "Flash-notice">
+        <%= flash[:notice] %>
+      </p>
+    <% end %>
+    
     <%= yield %>
-    <footer>
-
-    </footer>
+    
   </body>
 </html>

@@ -1,17 +1,17 @@
-<p class="NewUsers-title"> SignIn </p>
+<div class="block">
+  <p class="welcome-head">Sign-in</p>
+  <section class="signin-section">
+    <%= form_with url: sessions_path do |form| %>
+      <div class="signin-fields">
+        <%= form.label :email, "Email:", class: "labels" %>
+        <%= form.email_field :email, class: "fields" %>
+      </div>
+      <div class="signin-fields">
+        <%= form.label :password, "Password:", class: "labels" %>
+        <%= form.password_field :password, class: "fields" %>
+      </div>
+      <%= form.submit "Sign-in", class: "buttons" %>
+    <% end %>
+  </section>
+</div>
 
-<section class="UsersNew">
-  <%= form_with url: sessions_path do |form|%>
-  	<div class="Form-section">
-      <p class="Form-InputLabel">Email Id: </p>
-      <%= form.email_field :email, class: "Form-input" ,autofocus: "autofocus"%>
-    </div>
-    <div class="Form-section">
-      <p class="Form-InputLabel">Password: </p>
-      <%= form.password_field :password, class: "Form-input"%>
-    </div>
-    <div class="Form-section">
-      <%= form.submit "Sign-in" ,class: "Form-submit"%>
-    </div>
-  <% end %>
-</section>

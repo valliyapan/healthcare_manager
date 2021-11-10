@@ -1,0 +1,39 @@
+<section class="block">
+    <h1 class="welcome-head head">Healthcare Manager</h1>
+    <div class="Doctor-NavigationButtons">
+        <%= link_to "Back", doctors_path, class: "buttons" %>
+        <%= form_with url: "/doctors/#{@current_user.doctor.id}/edit", method: :get do |form| %>
+            <%= form.submit "Edit Profile", class: "buttons" %>
+        <% end %>
+    </div>
+    <div class="Profile">
+        <p class="Profile-head">Profile</p>
+        <p class="profile-labels">Name : <%= @current_user.name %></p>
+        <p class="profile-labels">Email : <%= @current_user.email %></p>
+        <p class="profile-labels">Gender : <%= @current_user.gender %></p>
+        <p class="profile-labels">Hospital : <%= @current_user.doctor.hospital.name %>
+        <p class="profile-labels">Specialization : <%= @current_user.doctor.specialization.name %>
+        <p class="profile-labels">Total Appointments : <%= @current_user.doctor.appointments.count %>
+        <p class="profile-labels">Unseen Appointments : <%= @current_user.doctor.appointments.where(status: false).count %>
+    </div>
+    <hr>
+    <div class="appointments-list">
+        <%= render partial: "appointments-section", locals: {section_title: "Unseen Appointments", current_appointments: @current_user.doctor.unseen} %>
+        <div>
+          <hr>
+        </div>
+        <%= render partial: "appointments-section", locals: {section_title: "Seen Appointments", current_appointments: @current_user.doctor.seen} %>
+    </div>
+</section>
+<script>
+  var i; 
+  function openpop(id){
+    i = id;
+    var popupdiv = document.getElementById(id);
+    popupdiv.style.display="block";
+  }
+  function closepop(){
+    var popupdiv = document.getElementById(i);
+    popupdiv.style.display="none";
+  }
+</script>

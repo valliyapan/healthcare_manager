@@ -1,11 +1,8 @@
-<h1 class="Home-title">
-  Welcome to the HomePage!!!
-</h1>
+<section class="block">
+  <p class="welcome-head">Welcome to Healthcare Manager Application!</p>
+  <div class="button-section">
+    <%= link_to "Sign-Up", new_user_path, class: "buttons" %>
+    <%= link_to "Sign-in", "/signin", class: "buttons" %>
+  </div>
+</section>
 
-<h3 class="Home-authenticate">
-  If you are a new user , <%= link_to "sign-up here", new_user_path %>
-</h3>
-
-<h3 class="Home-authenticate">
-  If you are an existing user , <%= link_to "sign-in here", new_sessions_path %>
-</h3>

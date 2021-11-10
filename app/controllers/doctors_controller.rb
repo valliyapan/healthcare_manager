@@ -33,10 +33,11 @@ class DoctorsController < ApplicationController
       user = @current_user.update(name: name,email: email, password: password, gender: gender)
       if user
         flash[:notice] = "Updated Successfully!"
+        redirect_to "/doctors/home"
       else
         flash[:error] = "Invalid input!"
+        redirect_to "/doctors/#{@current_user.doctor.id}/edit"
       end
-      redirect_to "/doctors/#{@current_user.doctor.id}/edit"
     end
   end
 

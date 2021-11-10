@@ -19,6 +19,7 @@ class UsersController < ApplicationController
         user_id: user.id,
         is_blocked: false
       )
+      patient.save
       flash[:notice] = "Account created successfully!!"
       redirect_to "/"
     else

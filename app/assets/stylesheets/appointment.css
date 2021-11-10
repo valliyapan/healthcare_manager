@@ -1,0 +1,55 @@
+.s_pending{
+  background-color: rgb(134, 255, 134);
+}
+.s_completed{
+  background-color: rgb(253, 141, 141);
+}
+.s_pending,.s_completed{
+  margin-top: 5px;
+  display: flex;
+  text-align: center;
+}
+.s_completed p,.s_pending p{
+  margin-left: 20px;
+}
+.s_edit{
+  width: 15px;
+}
+.s_delete{
+  width: 20px;
+}
+.s_color{
+  display: flex;
+  width: 100%;
+  float: right;
+}
+.s_color div{
+  margin-left: 10px;
+}
+.s_color p{
+  margin-left: 10px;
+}
+.s_main_color{
+  display: flex;
+}
+.s_green, .s_pink ,.s_grey{
+  width:20px;
+  height: 20px;
+  border-radius: 50%;
+}
+.s_green{
+  background-color: rgb(134, 255, 134);
+}
+.s_pink{
+  background-color: rgb(253, 141, 141);
+}
+.s_grey{
+  background-color: rgb(189, 187, 187);
+}
+.s_app_list{
+  width:60%;
+  margin:auto;
+}
+.s_app_list div{
+  height: 75px;
+}

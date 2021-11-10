@@ -9,6 +9,13 @@
 <body>
     <div class="Schedule">
         <p class="Schedule-head">Edit Schedule</p>
+        <div class="s_main_color">
+          <div class="s_color">
+            <div class="s_green"></div><p>Available</p>
+            <div class="s_pink"></div><p>Booked</p>
+            <div class="s_grey"></div><p>Not Available</p>
+          </div>
+        </div>
         <table class="Schedule-table">
             <tr>
                 <th>Day</th>
@@ -22,7 +29,7 @@
                         <%= Doctor.day(t) %>
                     </td>
                     <% 11.times.each do |i| %>
-                            <%= form_with url: "/appointments",id: "myform" , method: :post do |form| %>
+                            <%= form_with url: "/appointments/#{@appointment.id}",id: "myform" , method: :put do |form| %>
                                 <% if @doctor.available(t,i) %>
                                     <% if @doctor.booked(t,i) %>
                                         <% class_name = "booked-slot" %>
@@ -35,7 +42,7 @@
                                 <td class= '<%= class_name %> cursor-available' id="<%="#{t},#{i}" %>" onclick='change("<%= "#{t},#{i}" %>")' >
                                     <input type="hidden" id="input1" name="days" value="">
                                     <input type="hidden" id="input2" name="slot" value="">
-									<input type="hidden" id="input3" name="doctor" value="<%= @doctor.id %>">
+									                  <input type="hidden" id="input3" name="doctor" value="<%= @doctor.id %>">
                                     <%= "#{i+9}.00 - #{i+10}.00" %>
                                 </td>
                             <% end %>
@@ -44,7 +51,7 @@
             <% end %>
         </table>
     </div>
-	<input type="Submit" value="Confirm Appointment" onclick="check()">
+	<input type="Submit" value="Reschedule" onclick="check()">
 </body>
 <script>
     function change(id) {

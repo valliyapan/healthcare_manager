@@ -7,8 +7,37 @@
   <title>Document</title>
 </head>
 <body>
-  <% @current_user.appointments.each do |appointment|%>
-    <h3><%= appointment.patient.user.name %>  <%= appointment.appointment_time %></h3>
-  <% end %>
+  <div class="s_app_list">
+    <% @current_user.appointments.each do |appointment|%>
+      <div class=<%= appointment.appointment_time >= DateTime.now ? "s_pending" : "s_completed"%>>
+        <div class="s_app_id">
+          <p>Appointment Id : </p>
+          <p><%= appointment.id %></p>
+        </div>
+        <div class="s_app_id">
+          <p>Date :</p>
+          <p> <%= appointment.appointment_time.strftime("%d-%b-%Y")%> </p>
+        </div>
+        <div class="s_app_id">
+          <p>Time : </p>
+          <p><%= appointment.appointment_time.strftime("%I : %M %p") %></p></p>
+        </div>
+        <div class="s_app_id">
+          <p>Status :</p>
+          <p><%= appointment.appointment_time >= DateTime.now ? "Pending" : "Completed"%> </p>
+        </div>
+        <% if appointment.appointment_time >= DateTime.now %>
+          <%= form_with(url: "/appointments/#{appointment.id}", method: "delete") do %>
+            <%= image_submit_tag('delete.svg',class: "s_delete") %>
+          <% end %>
+          <%= form_with(url: "/appointments/#{appointment.id}/edit", method: "get") do %>
+            <%= image_submit_tag('edit.svg',class: "s_edit") %>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
 </body>
+<script>
+</script>
 </html>

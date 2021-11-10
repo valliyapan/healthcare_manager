@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.js"></script>
+
+</head>
+
+<body>
+    <div class="container d-flex justify-content-center mt-50 mb-50">
+        <div class="row">
+            <div class="col-md-12 text-right mb-3">
+                <button class="btn btn-primary" id="download"> download pdf</button>
+            </div>
+            <div class="col-md-12">
+                <div class="card" id="invoice">
+                    <div class="card-header bg-transparent header-elements-inline">
+                        <h6 class="card-title text-primary">Appointment Receipt</h6>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="mb-4 pull-left">
+                                    <ul class="list list-unstyled mb-0 text-left">
+                                        <li><h5 class="my-2">Doctor Name : Dr.<%= @appointment.doctor.user.name%></h5></li>
+                                        <li><h5>Specialization : <%= @appointment.doctor.specialization.name%></h5></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="mb-4 ">
+                                    <div class="text-sm-right">
+                                        <h4 class="invoice-color mb-2 mt-md-2">Receipt #SK<%= @appointment.id %></h4>
+                                        <ul class="list list-unstyled mb-0">
+                                            <li><h5>Appointment Date: </h5><h4 class="font-weight-semibold my-2"><%=@appointment.appointment_time.strftime("%d-%b-%Y") %></h4></li>
+                                            <li><h5>Appointment Time: </h5><h4 class="font-weight-semibold my-2"><%=@appointment.appointment_time.strftime("%I:%M %p") %></h4></li>
+                                            <li>Book date: <span class="font-weight-semibold"><%= @appointment.book_time.in_time_zone("Chennai").strftime("%d-%b-%Y")%></span></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="d-md-flex flex-md-wrap">
+                            <div class="mb-4 mb-md-2 text-left"> <h5 class="text-muted">Receipt To:</h5>
+                                <ul class="list list-unstyled mylist mb-0">
+                                    <li>
+                                        <h5 class="my-2">Name : <%= @current_user.name %></h5>
+                                    </li>
+                                    <li><h5 class="font-weight-semibold">Gender : <%= @current_user.gender %></h5></li>
+                                    <li><h5 class="font-weight-semibold">Email : <%= @current_user.email %></h5></li>
+                                </ul>
+                            </div>
+                            <div class="mb-2 ml-auto"> <h5 class="text-muted">Hospital Details:</h5>
+                                <div class="d-flex flex-wrap wmin-md-400">
+                                    <ul class="list list-unstyled mb-0 text-left">
+                                        <li>
+                                            <h5 class="my-2">Hospital name:</h5>
+                                        </li>
+                                        <li>Country:</li>
+                                        <li>City:</li>
+                                        <li>Address:</li>
+                                        <li>Contact:</li>
+                                        <li>Email:</li>
+                                    </ul>
+                                    <ul class="list list-unstyled text-right mb-0 ml-auto">
+                                        <li>
+                                            <h5 class="font-weight-semibold my-2">SriKrishna Hospitals</h5>
+                                        </li>
+                                        <li>India</li>
+                                        <li>Chennai</li>
+                                        <li>21,Anna Nagar</li>
+                                        <li><span class="font-weight-semibold">044-2234876</span></li>
+                                        <li><a href="#">srikrishna@gmail.com</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+  window.onload = function () {
+    document.getElementById("download")
+        .addEventListener("click", () => {
+            const invoice = this.document.getElementById("invoice");
+            var opt = {
+                margin: 0.6,
+                filename: 'myfile.pdf',
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2 },
+                jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+            };
+            html2pdf().from(invoice).set(opt).save();
+        })
+}
+</script>
+</html>

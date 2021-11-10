@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+    <div class="Schedule">
+        <p class="Schedule-head">Edit Schedule</p>
+        <table class="Schedule-table">
+            <tr>
+                <th>Day</th>
+                <% 11.times.each do |t| %>
+                    <th><%= t+1 %></th>
+                <% end %>
+            </tr>
+            <% 7.times.each do |t| %>
+                <tr>
+                    <td>
+                        <%= Doctor.day(t) %>
+                    </td>
+                    <% 11.times.each do |i| %>
+                            <%= form_with url: "/appointments",id: "myform" , method: :post do |form| %>
+                                <% if @doctor.available(t,i) %>
+                                    <% if @doctor.booked(t,i) %>
+                                        <% class_name = "booked-slot" %>
+                                    <% else %>
+                                        <% class_name = "available-slot" %>
+                                    <% end %>
+                                <% else %>
+                                    <% class_name = "not-available-slot" %>
+                                <% end %>
+                                <td class= '<%= class_name %> cursor-available' id="<%="#{t},#{i}" %>" onclick='change("<%= "#{t},#{i}" %>")' >
+                                    <input type="hidden" id="input1" name="days" value="">
+                                    <input type="hidden" id="input2" name="slot" value="">
+									<input type="hidden" id="input3" name="doctor" value="<%= @doctor.id %>">
+                                    <%= "#{i+9}.00 - #{i+10}.00" %>
+                                </td>
+                            <% end %>
+                    <% end %>
+                </tr>
+            <% end %>
+        </table>
+    </div>
+	<input type="Submit" value="Confirm Appointment" onclick="check()">
+</body>
+<script>
+    function change(id) {
+        var selected = document.getElementById(id);
+        var selected1 = document.querySelector(".selected");
+        var input1 = document.getElementById("input1");
+        var input2 = document.getElementById("input2");
+        if(selected1)
+            selected1.classList.remove("selected");
+        if(selected.classList.contains("not-available-slot") || selected.classList.contains("booked-slot"))
+            return;
+        if(selected1==selected)
+        {
+            input1.value = "";
+            input2.value = "";
+            return;
+        }
+        var s = id.split(",");
+        input1.value = s[0];
+        input2.value = s[1];
+        selected.classList.toggle("selected");
+    }
+	function check() {
+		var input1 = document.getElementById("input1");
+        var input2 = document.getElementById("input2");
+		if(input1.value=="" || input2.value=="")
+			alert("Select any time slot");
+		else
+			document.getElementById("myform").submit();
+	}
+</script>
+</html>

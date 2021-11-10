@@ -3,7 +3,7 @@ class User < ApplicationRecord
   has_one :clerk, dependent: :destroy
   has_one :doctor, dependent: :destroy
   has_secure_password
-  validates :name, presence: true
+  validates :name, presence: true, length: { minimum: 2 }
   validates :email, presence: true
   validates :gender, presence: true
   validates :password, length: { in: 6..20 }

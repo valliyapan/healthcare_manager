@@ -29,6 +29,18 @@ class Doctor < ApplicationRecord
     end
   end
 
+  
+  def booked(day,slot)
+    appointments.where(status:  false).each do |appointment|
+      diff = ((appointment.appointment_time - DateTime.now)/(24*3600)).round
+      if diff == day && appointment.appointment_time.strftime("%H").to_i - 8 == slot+1
+        return true
+      end
+    end
+    false
+  end
+  
+
   def find_day(t)
     t = (t + Date.today.cwday - 1).modulo(7)
     case t
@@ -53,6 +65,5 @@ class Doctor < ApplicationRecord
     day_name = find_day(t)
     available?(i,day_name)
   end
-
 
 end

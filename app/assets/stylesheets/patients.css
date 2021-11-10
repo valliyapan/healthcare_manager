@@ -1,0 +1,40 @@
+.s_search_area {
+  max-width: 500px;
+  margin: auto;
+  display: grid;
+  justify-content: center;
+}
+.s_specialization {
+  margin: 10px 0 20px 0px;
+}
+.s_select_specialization {
+  margin-left: 20px;
+}
+.s_main_div{
+  display: flexbox;
+  justify-content: space-evenly;
+}
+.s_box {
+
+  margin-top: 30px;
+  text-align: center;
+  border-left:5px solid rgb(10, 247, 176);
+  background-color: rgba(203, 252, 237, 0.884);
+
+}
+.s_box_name{
+  font-size: 25px;
+}
+.s_box_avail{
+  float:left;
+  font-size: 20px;
+  margin-right: 5px;
+  font-weight: bold;
+}
+.s_box_days{
+  float: left;
+  font-size: 20px;
+}
+.s_box_sec{
+  margin-top: 20px;
+}

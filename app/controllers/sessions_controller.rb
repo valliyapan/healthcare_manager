@@ -1,5 +1,6 @@
 class SessionsController < ApplicationController
   skip_before_action :ensure_user_login
+  
   def new
   end
 
@@ -10,6 +11,8 @@ class SessionsController < ApplicationController
       flash[:notice] = user.name + " signed in successfully!"
       if user.role == "doctor"
         redirect_to doctors_path
+      elsif user.role == "patient"
+        redirect_to "/"
       end
     else
       flash[:error] = "Invalid credentials"
@@ -23,5 +26,4 @@ class SessionsController < ApplicationController
     flash[:notice] = "Signed out successfully"
     redirect_to "/"
   end
-
 end

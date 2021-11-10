@@ -1,3 +1,63 @@
+.Upcoming-appointments{
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 24px;
+}
+.Doctor-NavigationButtons{
+    display: flex;
+    justify-content: space-between;
+}
+.Appointments-table{
+  text-align: initial;
+  margin: auto;
+  border-collapse: separate;
+  border-spacing: 50px;
+}
+.Schedule-table{
+  text-align: initial;
+  margin: auto;
+  border-collapse: collapse;
+  margin-bottom: 25px;
+}
+.Schedule-table, .Schedule-table th, .Schedule-table td{
+  border: 1px solid black;
+  padding: 15px 5px;
+}
+.cursor-type{
+  cursor: default;
+}
+.available-slot{
+  background-color:rgb(111, 255, 118);
+}
+.not-available-slot{
+  background-color: rgb(189, 187, 187);
+}
+.Schedule-head{
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 5px;
+}
+.Doctor-edit-button{
+  display: flex;
+  justify-content: right;
+  margin-bottom: 10px;
+}
+.no-cursor{
+  cursor: no-drop;
+}
+.cursor-available{
+  cursor: pointer;
+}
+.selected{
+  background-color: green ;
+  color: white  ;
+}
+.booked-slot  {
+  background-color: pink;
+}
+.Schedule-table th{
+  text-align: center;
+}
 .Upcoming-appointments, .appointments-list{
   text-align: center;
   margin-bottom: 30px;
@@ -61,3 +121,4 @@
   margin-left: 60px;
   margin-top: 50px;
 }
+

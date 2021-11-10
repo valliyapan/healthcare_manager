@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+  <div class="s_search_area well">
+    <div class="s_specialization">
+      <label for="specialization" >Choose the specialization</label>
+      <select name="specialization" id="specialization" class="s_select_specialization" onchange="populate(this.id)">
+        <% Specialization.all.each do |specialization| %>
+          <option value="<%= specialization.name %>" ><%= specialization.name %></option>
+        <% end %>
+      </select>
+    </div>
+  </div>
+  <div id="main_div" class="s_main_div">
+    <% Specialization.first.doctors.each do |doctor| %>
+      <div class="col-lg-3 s_box">
+        <h1 class="s_box_name">Dr. <%= doctor.user.name %></h1>
+        <div class="s_box_sec">
+          <p class="s_box_avail">Available : </p>
+          <% if !doctor.mon.empty?() %>
+            <p class="s_box_days">Mon , </p>
+          <% end %>
+          <% if !doctor.tue.empty?() %>
+            <p class="s_box_days">Tue , </p>
+          <% end %>
+          <% if !doctor.wed.empty?() %>
+            <p class="s_box_days">Wed , </p>
+          <% end %>
+          <% if !doctor.thu.empty?() %>
+            <p class="s_box_days">Thu , </p>
+          <% end %>
+          <% if !doctor.fri.empty?() %>
+            <p class="s_box_days">Fri , </p>
+          <% end %>
+          <% if !doctor.sat.empty?() %>
+          <p class="s_box_days">Sat , </p>
+          <% end %>
+          <% if !doctor.sun.empty?() %>
+            <p class="s_box_days">Sun</p>
+          <% end %>
+        </div>
+        <form action="/appointments/<%= doctor.id %>" method="GET">
+          <input type="submit" value="Book Appointment">
+        </form>
+      </div>
+
+    <% end %>
+  <div>
+</body>
+<script>
+  function populate(s1)
+  {
+    var select1 = document.getElementById(s1);
+    var main = document.getElementById("main_div");
+    let arr=[];
+    var child = main.lastElementChild;
+        while (child) {
+            main.removeChild(child);
+            child = main.lastElementChild;
+        }
+    <% Specialization.all.each do |specialization| %>
+      if(select1.value=="<%= specialization.name %>")
+      {
+        <% specialization.doctors.each do |doctor| %>
+          var div = document.createElement("div");
+          div.className = "col-lg-3 s_box";
+          var div1 = document.createElement("div");
+          div1.className = "s_box_sec";
+          var h1 = document.createElement("h1");
+          h1.innerHTML = "Dr. " + "<%= doctor.user.name %>";
+          h1.className = "s_box_name";
+          var p = document.createElement("p");
+          p.className = "s_box_avail";
+          p.innerHTML = "Available :";
+          var form = document.createElement("form");
+          form.setAttribute("method","get");
+          form.setAttribute("action","/appointments/<%= doctor.id %>")
+          var s = document.createElement("input");
+          s.setAttribute("type", "submit");
+          s.setAttribute("value", "Book Appointment");
+          var p1 = new Array(7);
+          for(var i=0;i<p1.length;i++)
+          {
+            p1[i]=document.createElement("p");
+            p1[i].className = "s_box_days";
+          }
+          <% if !doctor.mon.empty?() %>
+            p1[0].innerHTML = "Mon, ";
+          <% end %>
+          <% if !doctor.tue.empty?() %>
+            p1[1].innerHTML = "Tue, ";
+          <% end %>
+          <% if !doctor.wed.empty?() %>
+            p1[2].innerHTML = "Wed, ";
+          <% end %>
+          <% if !doctor.thu.empty?() %>
+            p1[3].innerHTML = "Thu, ";
+          <% end %>
+          <% if !doctor.fri.empty?() %>
+            p1[4].innerHTML = "Fri, ";
+          <% end %>
+          <% if !doctor.sat.empty?() %>
+            p1[5].innerHTML = "Sat, ";
+          <% end %>
+          <% if !doctor.sun.empty?() %>
+            p1[6].innerHTML = "Sun";
+          <% end %>
+          div.appendChild(h1);
+          div1.appendChild(p);
+          for(var i=0;i<p1.length;i++)
+            div1.appendChild(p1[i]);
+          div.appendChild(div1);
+          form.appendChild(s);
+          div.appendChild(form);
+          main.appendChild(div);
+        <% end %>
+      }
+    <% end %>
+  }
+</script>
+</html>

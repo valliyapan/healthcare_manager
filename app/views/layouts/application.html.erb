@@ -8,19 +8,39 @@
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   </head>
 
   <body>
+    <% if @current_user && @current_user.role == "patient" %>
+      <div class="s_header">
+        <h1>Healthcare Manager</h1>
+      </div>
+    <% end %>
+    
+    <% if @current_user && @current_user.role == "patient" %>
+      <div class="s_option_pane">
+        <%= link_to "Home", patients_path , method: "get",class: "s_home" %>
+        <%= link_to "Appointment History", appointments_path, method: "get",class: "s_history" %>
+        <%= link_to "Sign-out", destroy_session_path , method: "delete",class: "s_signout" %>
+      </div>
+    <% end %>
+
     <% if flash[:error] %>
       <p class= "Flash-error">
         <%= flash[:error] %>
       </p>
     <% end %>
+  
     <% if flash[:notice] %>
       <p class= "Flash-notice">
         <%= flash[:notice] %>
       </p>
     <% end %>
+    
     <%= yield %>
+    
   </body>
 </html>

@@ -4,24 +4,10 @@
         <%= form_with url: "/signout", method: :delete do |f| %>
             <%= f.submit "Sign out", class: "buttons" %>
         <% end %>
-        <%= link_to "Home", "/", class: "buttons" %>
+        <%= link_to "Home", "/doctors/home", class: "buttons" %>
     </div>
     <div class="Upcoming-appointments">
-        <p>Upcoming Appointments</p>
-        <table class="Appointments-table">
-            <tr>
-                <th>Name</th>
-                <th>Time</th>
-                <th>Details</th>
-            </tr>
-            <% @current_user.doctor.first_five.each do |t| %>
-                <tr>
-                    <td><%= t.patient.user.name %></td>
-                    <td><%= t.appointment_time.to_s(:long) %></td>
-                    <td><%= link_to "Details", "/" , class: "buttons" %></td>
-                </tr>
-            <% end %>
-        </table>
+        <%= render partial: "appointments-section", locals: {section_title: "Upcoming Appointments", current_appointments: @current_user.doctor.first_five} %>
     </div>
     <div class="Schedule">
         <p class="Schedule-head">Schedule</p>
@@ -50,3 +36,15 @@
         </table>
     </div>
 </section>
+<script>
+  var i; 
+  function openpop(id){
+    i = id;
+    var popupdiv = document.getElementById(id);
+    popupdiv.style.display="block";
+  }
+  function closepop(){
+    var popupdiv = document.getElementById(i);
+    popupdiv.style.display="none";
+  }
+</script>

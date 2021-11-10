@@ -9,6 +9,14 @@ class Doctor < ApplicationRecord
     appointments.where(status: false).take(5)
   end
 
+  def unseen
+    appointments.where(status: false)
+  end
+
+  def seen
+    appointments.where(status: true)
+  end
+
   def self.day(t)
     Date.today.next_day(t).strftime("%a %d %b").to_s
   end

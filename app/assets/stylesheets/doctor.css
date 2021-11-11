@@ -48,10 +48,6 @@
 .cursor-available{
   cursor: pointer;
 }
-.selected{
-  background-color: green ;
-  color: white  ;
-}
 .booked-slot  {
   background-color: pink;
 }
@@ -121,4 +117,7 @@
   margin-left: 60px;
   margin-top: 50px;
 }
-
+.selected{
+  background-color: red ;
+  color: white  ;
+}

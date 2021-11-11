@@ -10,7 +10,22 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
+<body>
+    <% if flash[:notice]%>
+      <p class="Flash-notice"> <%= flash[:notice] %> </p>
+    <% end %>
+    <% if @current_user%>
+      <p class="UserHeader">
+        Admin :<%= @current_user.name %>
+        
+      </p>
+      <p class="UserHeader">
+        <%= link_to "Sign-out", destroy_session_path , method: "delete"%>
+      </p>
+    <% end %>
+    <% if flash[:error]%>
+      <p class="Flash-error"> <%= flash[:error] %> </p>
+    <% end %>
     <%= yield %>
   </body>
 </html>

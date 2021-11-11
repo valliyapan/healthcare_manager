@@ -1,0 +1,35 @@
+<p class="NewUsers-title"> Doctor Creation !!</p>
+
+<section class="UsersNew">
+  <%= form_with url: users_path do |form|%>
+    <div class="Form-section">
+      <p class="Form-InputLabel">Name: </p>
+      <%= form.text_field :name , class: "Form-input",autofocus: "autofocus"%>
+    </div>
+    <div class="Form-section">
+      <p class="Form-InputLabel">Gender: </p>
+      <%= form.text_field :gender , class: "Form-input"%>
+    </div>
+    <div class="Form-section">
+      <p class="Form-InputLabel">Email Id: </p>
+      <%= form.email_field :email, class: "Form-input"%>
+    </div>
+    <div class="Form-section">
+      <p class="Form-InputLabel">Password: </p>
+      <%= form.password_field :password, class: "Form-input"%>
+    </div>
+    
+    <div class="Form-section my " >
+      <p class="Form-InputLabel"> Specialization : </p>
+      <select name="id">
+    <% Specialization.all.each do |specialization| %>
+    <option value=<%=specialization.id%>> <%=specialization.name%> </option>
+    <% end %>
+    </div>
+
+    <div class="Form-section ">
+      <%= form.submit "Create" ,class: "Form-submit"%>
+    </div>
+
+  <% end %>
+</section>

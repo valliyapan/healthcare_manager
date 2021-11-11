@@ -1,0 +1,13 @@
+<p class="NewUsers-title"> Specialization Creation !!</p>
+
+<section class="UsersNew">
+  <%= form_with url: specializations_path do |form|%>
+    <div class="Form-section">
+      <p class="Form-InputLabel">Name: </p>
+      <%= form.text_field :name , class: "Form-input",autofocus: "autofocus"%>
+    </div>
+    <div class="Form-section">
+      <%= form.submit "Create" ,class: "Form-submit"%>
+    </div>
+  <% end %>
+</section>

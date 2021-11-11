@@ -1,0 +1,38 @@
+<p class="NewUsers-title"> Patient Details !! </p>
+<% Patient.all.each do |pa| %>
+<div style="display: grid">
+    <h5>  Name :<%= pa.user.name %> </h5>
+    <p >  Blocked Status :<%= pa.is_blocked %> </p>
+    <p >  Email : <%= pa.user.email %> </p>
+</div>
+<%end%>
+
+<p class="NewUsers-title"> Appointment Details !! </p>
+<% Appointment.all.each do |pa| %>
+<div style="display: grid">
+    <h5>  Appointment id : <%= pa.id %> </h5>
+    <p>  Doctor :<%= pa.doctor.user.name %> </p>
+    <p>  Patient : <%= pa.patient.user.name %> </p>
+    <p>  Status :<%= pa.status %> </p>
+</div>
+<%end%>
+
+<p class="NewUsers-title"> Specialization Details !! </p>
+<% Specialization.all.each do |s| %>
+<div style="display: grid">
+    <h5>  Specialization : <%=s.name%> </h5>
+<% s.doctors.each do |t| %>
+    <div>
+      <p> Doctor : <%= t.user.name %> </p>
+    </div>
+    <%end%>
+</div>
+<%end%>
+
+<h3 class="Home-authenticate" >
+  To create Doctor , <%= link_to "click here", new_user_path %>
+</h3>
+
+<h3 class="Home-authenticate" >
+  To create Specialization , <%= link_to "click here", new_specialization_path %>
+</h3>

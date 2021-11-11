@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
       if user.role == "doctor"
         redirect_to doctors_path
       elsif user.role == "patient"
-        redirect_to "/"
+        redirect_to patients_path
       end
     else
       flash[:error] = "Invalid credentials"

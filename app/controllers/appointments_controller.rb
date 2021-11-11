@@ -1,6 +1,6 @@
 class AppointmentsController < ApplicationController
   def index
-    @current_user = current_user.patient
+    @current_user = current_user
     render "index"
   end
 

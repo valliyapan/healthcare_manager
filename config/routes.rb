@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :users
   resources :doctors
   resources :appointments
+  resources :patients
   get "/signin" => "sessions#new"
   post "/signin" => "sessions#create", as: :sessions
   delete "/signout" => "sessions#destroy", as: :destroy_session

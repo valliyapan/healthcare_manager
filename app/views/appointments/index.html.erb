@@ -8,7 +8,7 @@
 </head>
 <body>
   <div class="s_app_list">
-    <% @current_user.appointments.each do |appointment|%>
+    <% @current_user.patient.appointments.each do |appointment|%>
       <div class=<%= appointment.appointment_time >= DateTime.now ? "s_pending" : "s_completed"%>>
         <div class="s_app_id">
           <p>Appointment Id : </p>

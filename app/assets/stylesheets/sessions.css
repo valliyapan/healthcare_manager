@@ -2,6 +2,7 @@
   width: 950px;
   margin: auto;
   margin-top: 50px;
+  margin-bottom: 30px;
 }
 .welcome-head{
   margin-top: 150px;
@@ -26,6 +27,7 @@
   font-size: 24px;
   border: 0;
   cursor: pointer;
+  text-align: center;
 }
 .signin-section, .signup-section{
   display: flex;
@@ -60,9 +62,6 @@
   justify-content: space-around;
   margin-bottom: 15px;
 }
-.radio-edit{
-  margin-right: -65px;
-}
 .radio-button{
   margin-right: -15px;
 }
@@ -90,4 +89,7 @@ text-align: center;
 color: #155724;
 border: 1.2px solid #155724;
 background-color: #8fc79c;
+}
+.spec{
+  font-size: 22px;
 }

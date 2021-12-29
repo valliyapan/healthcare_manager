@@ -23,27 +23,27 @@
   </div>
   <div id="main_div" class="s_main_div">
     <% Specialization.first.doctors.each do |doctor| %>
-      <div class="col-lg-3 s_box">
+      <div class="s_box">
         <h1 class="s_box_name">Dr. <%= doctor.user.name %></h1>
         <div class="s_box_sec">
           <p class="s_box_avail">Available : </p>
           <% if !doctor.mon.empty?() %>
-            <p class="s_box_days">Mon , </p>
+            <p class="s_box_days">Mon,</p>
           <% end %>
           <% if !doctor.tue.empty?() %>
-            <p class="s_box_days">Tue , </p>
+            <p class="s_box_days">Tue ,</p>
           <% end %>
           <% if !doctor.wed.empty?() %>
-            <p class="s_box_days">Wed , </p>
+            <p class="s_box_days">Wed ,</p>
           <% end %>
           <% if !doctor.thu.empty?() %>
-            <p class="s_box_days">Thu , </p>
+            <p class="s_box_days">Thu ,</p>
           <% end %>
           <% if !doctor.fri.empty?() %>
-            <p class="s_box_days">Fri , </p>
+            <p class="s_box_days">Fri ,</p>
           <% end %>
           <% if !doctor.sat.empty?() %>
-          <p class="s_box_days">Sat , </p>
+          <p class="s_box_days">Sat ,</p>
           <% end %>
           <% if !doctor.sun.empty?() %>
             <p class="s_box_days">Sun</p>
@@ -55,6 +55,7 @@
       </div>
 
     <% end %>
+
   <div>
 </body>
 <script>
@@ -73,7 +74,7 @@
       {
         <% specialization.doctors.each do |doctor| %>
           var div = document.createElement("div");
-          div.className = "col-lg-3 s_box";
+          div.className = "s_box";
           var div1 = document.createElement("div");
           div1.className = "s_box_sec";
           var h1 = document.createElement("h1");
@@ -95,22 +96,22 @@
             p1[i].className = "s_box_days";
           }
           <% if !doctor.mon.empty?() %>
-            p1[0].innerHTML = "Mon, ";
+            p1[0].innerHTML = "Mon,";
           <% end %>
           <% if !doctor.tue.empty?() %>
-            p1[1].innerHTML = "Tue, ";
+            p1[1].innerHTML = "Tue,";
           <% end %>
           <% if !doctor.wed.empty?() %>
-            p1[2].innerHTML = "Wed, ";
+            p1[2].innerHTML = "Wed,";
           <% end %>
           <% if !doctor.thu.empty?() %>
-            p1[3].innerHTML = "Thu, ";
+            p1[3].innerHTML = "Thu,";
           <% end %>
           <% if !doctor.fri.empty?() %>
-            p1[4].innerHTML = "Fri, ";
+            p1[4].innerHTML = "Fri,";
           <% end %>
           <% if !doctor.sat.empty?() %>
-            p1[5].innerHTML = "Sat, ";
+            p1[5].innerHTML = "Sat,";
           <% end %>
           <% if !doctor.sun.empty?() %>
             p1[6].innerHTML = "Sun";

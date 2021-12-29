@@ -11,3 +11,55 @@
 .s_option_pane{
 
 }
+.s_header{
+  text-align: center;
+  background-color: rgba(203, 252, 237, 0.884);
+  display: flex;
+  height: 70px;
+}
+.s_header h1{
+  margin-top: 0;
+  padding-top: 15px;
+  color: rgb(78, 78, 78);
+  margin-left: 25px;
+  font-size: 30px;
+}
+
+.s_option_pane{
+
+  width: 20%;
+  margin: auto;
+  margin-top: 100px;
+  text-align: center;
+}
+.s_option_pane p{
+  background-color: rgb(37, 9, 4);
+  width: 70%;
+  margin: auto;
+  margin-top: 30px;
+  padding: 10px;
+  font-size: 20px;
+  border-radius: 30px;
+}
+.links{
+  color: white;
+}
+.s_option{
+  color: white;
+}
+
+.s_option_pane p:hover{
+  background-color: rgb(39, 38, 38);
+  transform:  scale(1.2);
+}
+.s_cancel{
+  width: 20px;
+  margin-left: 97%;
+  margin-top: 20px;
+
+}
+.s_threebar{
+  margin-top: 20px;
+  margin-left: 20px;
+  width: 30px;
+}

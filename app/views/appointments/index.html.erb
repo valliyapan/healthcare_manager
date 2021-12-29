@@ -7,35 +7,40 @@
   <title>Document</title>
 </head>
 <body>
-  <div class="s_app_list">
-    <% @current_user.patient.appointments.each do |appointment|%>
-      <div class=<%= appointment.appointment_time >= DateTime.now ? "s_pending" : "s_completed"%>>
-        <div class="s_app_id">
-          <p>Appointment Id : </p>
-          <p><%= appointment.id %></p>
-        </div>
-        <div class="s_app_id">
-          <p>Date :</p>
-          <p> <%= appointment.appointment_time.strftime("%d-%b-%Y")%> </p>
-        </div>
-        <div class="s_app_id">
-          <p>Time : </p>
-          <p><%= appointment.appointment_time.strftime("%I : %M %p") %></p></p>
-        </div>
-        <div class="s_app_id">
-          <p>Status :</p>
-          <p><%= appointment.appointment_time >= DateTime.now ? "Pending" : "Completed"%> </p>
-        </div>
-        <% if appointment.appointment_time >= DateTime.now %>
-          <%= form_with(url: "/appointments/#{appointment.id}", method: "delete") do %>
-            <%= image_submit_tag('delete.svg',class: "s_delete") %>
+  <div class="s_app_list container-fluid table-responsive">
+    <table class="table table-hover table-bordered s_my_table">
+      <tr class="s_t_header">
+        <th>Id</th>
+        <th>Date</th>
+        <th>Time</th>
+        <th>Status</th>
+        <th>Edit</th>
+        <th>Delete</th>
+      </tr>
+      <% @current_user.patient.appointments.each do |appointment| %>
+        <tr class=<%= appointment.status ? "s_completed" : "s_pending"%>>
+          <td><%= appointment.id %></td>
+          <td><%= appointment.appointment_time.strftime("%d-%b-%Y")%></td>
+          <td> <%= appointment.appointment_time.strftime("%I : %M %p") %></td>
+          <td><%= appointment.status ? "Completed" : "Pending"%></td>
+          <% if !appointment.status && appointment.margin %>
+            <td>
+              <%= form_with(url: "/appointments/#{appointment.id}/edit", method: "get") do %>
+                <%= image_submit_tag('edit.svg',class: "s_edit") %>
+              <% end %>
+            </td>
+            <td>
+              <%= form_with(url: "/appointments/#{appointment.id}", method: "delete") do %>
+                <%= image_submit_tag('delete.svg',class: "s_delete") %>
+              <% end %>
+            </td>
+          <% else %>
+            <td>-</td>
+            <td>-</td>
           <% end %>
-          <%= form_with(url: "/appointments/#{appointment.id}/edit", method: "get") do %>
-            <%= image_submit_tag('edit.svg',class: "s_edit") %>
-          <% end %>
-        <% end %>
-      </div>
-    <% end %>
+        </tr>
+      <% end %>
+    </table>
   </div>
 </body>
 <script>

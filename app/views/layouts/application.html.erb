@@ -14,17 +14,21 @@
   </head>
 
   <body>
-    <% if @current_user && @current_user.role == "patient" %>
+    
+    <% if @display != false && @current_user && @current_user.email_confirmed && @current_user.role == "patient" %>
       <div class="s_header">
-        <h1>Healthcare Manager</h1>
+        <%= form_with(url: option_path, method: "get") do %>
+          <%= image_submit_tag('threebar.svg',class: "s_threebar") %>
+        <% end %>
+        <h1>Srikrishna Hospitals</h1>
       </div>
     <% end %>
     
-    <% if @current_user && @current_user.role == "patient" %>
-      <div class="s_option_pane">
-        <%= link_to "Home", patients_path , method: "get",class: "s_home" %>
-        <%= link_to "Appointment History", appointments_path, method: "get",class: "s_history" %>
-        <%= link_to "Sign-out", destroy_session_path , method: "delete",class: "s_signout" %>
+    <% if @current_user && @current_user.role == "admin" %>
+      <div class="s_header">
+        <%= form_with(url: list_path, method: "get") do %>
+          <%= image_submit_tag('threebar.svg',class: "s_threebar") %>
+        <% end %>
       </div>
     <% end %>
 

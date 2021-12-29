@@ -8,7 +8,14 @@
 </head>
 <body>
     <div class="Schedule">
-        <p class="Schedule-head">Edit Schedule</p>
+        <p class="Schedule-head">Book Appointment</p>
+        <div class="s_main_color">
+          <div class="s_color">
+            <div class="s_green"></div><p>Available</p>
+            <div class="s_pink"></div><p>Booked</p>
+            <div class="s_grey"></div><p>Not Available</p>
+          </div>
+        </div>
         <table class="Schedule-table">
             <tr>
                 <th>Day</th>
@@ -22,29 +29,36 @@
                         <%= Doctor.day(t) %>
                     </td>
                     <% 11.times.each do |i| %>
-                            <%= form_with url: "/appointments",id: "myform" , method: :post do |form| %>
-                                <% if @doctor.available(t,i) %>
-                                    <% if @doctor.booked(t,i) %>
-                                        <% class_name = "booked-slot" %>
-                                    <% else %>
-                                        <% class_name = "available-slot" %>
-                                    <% end %>
+                        <% if Appointment.check(i,t) %>
+                            <% class2 = "not-allowed-slot"%>
+                        <% else %>
+                            <% class2 = ""%>
+                        <% end %>
+                        <%= form_with url: "/appointments",id: "myform" , method: :post do |form| %>
+                            <% if @doctor.available(t,i) %>
+                                <% if @doctor.booked(t,i) %>
+                                    <% class_name = "booked-slot" %>
                                 <% else %>
-                                    <% class_name = "not-available-slot" %>
+                                    <% class_name = "available-slot" %>
                                 <% end %>
-                                <td class= '<%= class_name %> cursor-available' id="<%="#{t},#{i}" %>" onclick='change("<%= "#{t},#{i}" %>")' >
-                                    <input type="hidden" id="input1" name="days" value="">
-                                    <input type="hidden" id="input2" name="slot" value="">
-									<input type="hidden" id="input3" name="doctor" value="<%= @doctor.id %>">
-                                    <%= "#{i+9}.00 - #{i+10}.00" %>
-                                </td>
+                            <% else %>
+                                <% class_name = "not-available-slot" %>
                             <% end %>
+                            <td class= '<%= class_name %> cursor-available <%= class2 %>' id="<%="#{t},#{i}" %>" onclick='change("<%= "#{t},#{i}" %>")' >
+                                <input type="hidden" id="input1" name="days" value="">
+                                <input type="hidden" id="input2" name="slot" value="">
+                                <input type="hidden" id="input3" name="doctor" value="<%= @doctor.id %>">
+                                <%= "#{i+9}.00 - #{i+10}.00" %>
+                            </td>
+                        <% end %>
                     <% end %>
                 </tr>
             <% end %>
         </table>
     </div>
-	<input type="Submit" value="Confirm Appointment" onclick="check()">
+	<div>
+        <input type="Submit" value="Confirm Appointment" class="s_buttons s_center" onclick="check()">
+    </div>
 </body>
 <script>
     function change(id) {
@@ -52,10 +66,10 @@
         var selected1 = document.querySelector(".selected");
         var input1 = document.getElementById("input1");
         var input2 = document.getElementById("input2");
+        if(selected.classList.contains("not-available-slot") || selected.classList.contains("booked-slot") || selected.classList.contains("not-allowed-slot"))
+            return;
         if(selected1)
             selected1.classList.remove("selected");
-        if(selected.classList.contains("not-available-slot") || selected.classList.contains("booked-slot"))
-            return;
         if(selected1==selected)
         {
             input1.value = "";

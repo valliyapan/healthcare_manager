@@ -1,0 +1,46 @@
+<div class="s_profile">
+<h1>User Details</h1>
+  <div class="s_logo"><p class="s_logo"><%= @current_user.name[0] %></p></div>
+  <section class="s_signup-section">
+    <%= form_with url: "/patients/#{@current_user.id}", method: :put do |form| %>
+      <div class="s_profile_details">
+        <%= form.label :name, "Name  :", class: "s_labels" %>
+        <%= form.text_field :name, class: "s_fields" %>
+      </div>
+      <div class="s_profile_details">
+        <%= form.label :email, "Email  :", class: "s_labels" %>
+        <%= form.email_field :email, class: "s_fields" %>
+      </div>
+      <div class="s_profile_details">
+        <%= form.label :password, "Password:", class: "s_labels" %>
+        <%= form.password_field :password, class: "s_fields" %>
+      </div>
+      <%= form.submit :Save, class: "s_buttons" %>
+    <% end %>
+    <hr class="s_new">
+    <div class="s_appointment_details">
+      <h1>Appointments taken</h1>
+      <div class="s_profile_detail1">
+        <h3 class="s_label1">Total : </h3>
+        <h3 class="s_field1"><%= @current_user.total%></h3>
+      </div>
+      <div class="s_profile_detail1">
+        <h3 class="s_label1">Seen : </h3>
+        <h3 class="s_field1"><%= @current_user.seen%></h3>
+      </div>
+      <div class="s_profile_detail1">
+        <h3 class="s_label1">Unseen : </h3>
+        <h3 class="s_field1"><%= @current_user.unseen%></h3>
+      </div>
+    <div>
+  </section>
+</div>
+
+<script>
+    window.onload = function myfunc() {
+        var name = document.getElementById("name");
+        name.value = "<%= @current_user.name %>";
+        name = document.getElementById("email");
+        name.value = "<%= @current_user.email %>";
+    }
+</script>

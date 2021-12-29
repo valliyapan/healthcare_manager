@@ -29,6 +29,11 @@
                         <%= Doctor.day(t) %>
                     </td>
                     <% 11.times.each do |i| %>
+                            <% if Appointment.check(i,t) %>
+                                <% class2 = "not-allowed-slot"%>
+                            <% else %>
+                                <% class2 = ""%>
+                            <% end %>
                             <%= form_with url: "/appointments/#{@appointment.id}",id: "myform" , method: :put do |form| %>
                                 <% if @doctor.available(t,i) %>
                                     <% if @doctor.booked(t,i) %>
@@ -39,7 +44,7 @@
                                 <% else %>
                                     <% class_name = "not-available-slot" %>
                                 <% end %>
-                                <td class= '<%= class_name %> cursor-available' id="<%="#{t},#{i}" %>" onclick='change("<%= "#{t},#{i}" %>")' >
+                                <td class= '<%= class_name %> cursor-available  <%= class2 %>' id="<%="#{t},#{i}" %>" onclick='change("<%= "#{t},#{i}" %>")' >
                                     <input type="hidden" id="input1" name="days" value="">
                                     <input type="hidden" id="input2" name="slot" value="">
 									                  <input type="hidden" id="input3" name="doctor" value="<%= @doctor.id %>">
@@ -51,7 +56,7 @@
             <% end %>
         </table>
     </div>
-	<input type="Submit" value="Reschedule" onclick="check()">
+	<input type="Submit" value="Reschedule" class=" s_buttons s_center1" onclick="check()">
 </body>
 <script>
     function change(id) {
@@ -59,10 +64,10 @@
         var selected1 = document.querySelector(".selected");
         var input1 = document.getElementById("input1");
         var input2 = document.getElementById("input2");
+        if(selected.classList.contains("not-available-slot") || selected.classList.contains("booked-slot") || selected.classList.contains("not-allowed-slot"))
+            return;
         if(selected1)
             selected1.classList.remove("selected");
-        if(selected.classList.contains("not-available-slot") || selected.classList.contains("booked-slot"))
-            return;
         if(selected1==selected)
         {
             input1.value = "";

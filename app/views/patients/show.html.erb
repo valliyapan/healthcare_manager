@@ -1,0 +1,81 @@
+<section class="block">
+<p class="NewUsers-title"> Patient Details </p>
+<table class="table table-bordered">
+  <tr>
+    <th>Name</th>
+    <th>Blocked status</th>
+    <th>Email</th>
+  </tr>
+  <% Patient.all.each do |pa| %>
+      <tr>
+        <td><%= pa.user.name %></td>
+        <td><%= pa.is_blocked %></td>
+        <td><%= pa.user.email %></td>
+        <td>
+          <%= form_with(url: "/patients/#{pa.id}", method: "delete") do %>
+            <%= image_submit_tag('delete.svg',class: "s_delete") %>
+          <% end %>
+        </td>
+      </tr>
+  <%end%>
+</table>
+
+<p class="NewUsers-title"> Appointments for Today </p>
+<table class="table table-bordered">
+  <tr>
+    <th>Id</th>
+    <th>Date</th>
+    <th>Time</th>
+    <th>Status</th>
+    <th>Mark as done</th>
+  </tr>
+    <% Appointment.all.each do |appointment| %>
+      <% if appointment.appointment_time.today? and appointment.status == false %>
+        <tr>
+          <td><%= appointment.id %></td>
+          <td><%= appointment.appointment_time.strftime("%d-%b-%Y")%></td>
+          <td> <%= appointment.appointment_time.strftime("%I : %M %p") %></td>
+          <td><%= appointment.status ? "Completed" :  "Pending" %></td>
+          <td>
+            <%= form_with(url: "/done/#{appointment.id}", method: "post") do |form| %>
+                <%= form.submit "Mark as done", class: "buttons" %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    <% end %>
+</table>
+
+<p class="NewUsers-title"> Specialization Details </p>
+<% Specialization.all.each do |s| %>
+  <div style="display: grid">
+      <h3>  Specialization : <%=s.name%> </h3>
+      <table class="table table-bordered">
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Delete</th>
+        </tr>
+        <% s.doctors.each do |t| %>
+          <tr>
+              <td><%= t.user.name %></td>
+              <td><%= t.user.email %></td>
+              <td>
+                  <%= form_with(url: "/doctors/#{t.id}", method: "delete") do %>
+                    <%= image_submit_tag('delete.svg',class: "s_delete") %>
+                  <% end %>
+              </td> 
+          </tr>
+        <%end%>
+      </table>
+  </div>
+<%end%>
+<hr>
+<h3 class="Home-authenticate" >
+  To create Doctor , <%= link_to "click here", new_user_path %>
+</h3>
+
+<h3 class="Home-authenticate" >
+  To create Specialization , <%= link_to "click here", new_specialization_path %>
+</h3>
+</section>

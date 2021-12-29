@@ -1,16 +1,8 @@
 .s_pending{
-  background-color: rgb(134, 255, 134);
+  background-color: rgb(140, 252, 140);
 }
 .s_completed{
-  background-color: rgb(253, 141, 141);
-}
-.s_pending,.s_completed{
-  margin-top: 5px;
-  display: flex;
-  text-align: center;
-}
-.s_completed p,.s_pending p{
-  margin-left: 20px;
+  background-color: rgb(253, 186, 186);
 }
 .s_edit{
   width: 15px;
@@ -19,6 +11,8 @@
   width: 20px;
 }
 .s_color{
+  margin-left: 7.5%;
+  margin-bottom: 1.5%;
   display: flex;
   width: 100%;
   float: right;
@@ -52,4 +46,25 @@
 }
 .s_app_list div{
   height: 75px;
+}
+.s_t_header{
+  background-color: rgb(66, 66, 66);
+  color: white;
+}
+.s_my_table{
+  margin-top: 10px;
+}
+
+.s_my_table td,.s_my_table th{
+  text-align: center;
+}
+.not-allowed-slot{
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+.s_center{
+  margin-left: 40%;
+}
+.s_center1{
+  margin-left: 42.5%;
 }

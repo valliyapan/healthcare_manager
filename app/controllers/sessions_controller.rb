@@ -1,6 +1,7 @@
 class SessionsController < ApplicationController
   skip_before_action :ensure_user_login
-  
+  skip_before_action :ensure_blocked_patients
+
   def new
   end
 
@@ -8,11 +9,17 @@ class SessionsController < ApplicationController
     user = User.find_by(email: params[:email])
     if user && user.authenticate(params[:password])
       session[:current_user_id] = user.id
-      flash[:notice] = user.name + " signed in successfully!"
       if user.role == "doctor"
+        flash[:notice] = user.name + " signed in successfully!"
         redirect_to doctors_path
-      elsif user.role == "patient"
-        redirect_to patients_path
+      else
+        if user.email_confirmed
+          flash[:notice] = user.name + ", you have successfully signed in."
+          redirect_to patients_path
+        else
+          flash[:error] = "Verify your mail to sign in!"
+          redirect_to sessions_path
+        end
       end
     else
       flash[:error] = "Invalid credentials"

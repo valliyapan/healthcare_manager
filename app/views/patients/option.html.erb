@@ -1,0 +1,11 @@
+<body class="s_main_body">
+  <%= form_with(url: patients_path, method: "get") do %>
+        <%= image_submit_tag('cancel.svg',class: "s_cancel") %>
+  <% end %>
+  <div class="s_option_pane">
+    <p><%= link_to "Home", patients_path , method: "get",class: "s_option" %></p>
+    <p><%= link_to "Profile", "/patients/#{@current_user.id}", method: "get", class: "s_option"%></p>
+    <p><%= link_to "History", appointments_path, method: "get",class: "s_option" %></p>
+    <p><%= link_to "Sign-out", destroy_session_path , method: "delete",class: "s_option" %></p>
+  </div>
+</body>

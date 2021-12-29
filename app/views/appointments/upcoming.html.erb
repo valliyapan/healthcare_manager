@@ -1,0 +1,17 @@
+<section class="block">
+    <div class="appointments-list">
+        <%= render partial: "appointments-section", locals: {section_title: "Upcoming Appointments", current_appointments: @upcoming} %>
+    </div>
+</section>
+<script>
+  var i; 
+  function openpop(id){
+    i = id;
+    var popupdiv = document.getElementById(id);
+    popupdiv.style.display="block";
+  }
+  function closepop(){
+    var popupdiv = document.getElementById(i);
+    popupdiv.style.display="none";
+  }
+</script>

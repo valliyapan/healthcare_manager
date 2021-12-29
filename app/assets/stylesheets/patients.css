@@ -12,29 +12,105 @@
 }
 .s_main_div{
   display: flexbox;
-  justify-content: space-evenly;
 }
 .s_box {
-
   margin-top: 30px;
   text-align: center;
+  width: 40%;
+  margin: auto;
+  border-radius: 20px;
   border-left:5px solid rgb(10, 247, 176);
   background-color: rgba(203, 252, 237, 0.884);
-
 }
 .s_box_name{
   font-size: 25px;
 }
 .s_box_avail{
-  float:left;
   font-size: 20px;
   margin-right: 5px;
   font-weight: bold;
 }
 .s_box_days{
-  float: left;
   font-size: 20px;
 }
 .s_box_sec{
   margin-top: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.s_profile{
+  width:60%;
+  margin: auto;
+  margin-top: 2%;
+  text-align: center;
+  border: 1px solid black;
+  border-radius: 10px;
+}
+.s_logo{
+  width: 120px;
+  height: 120px;
+  background-color:rgb(27, 53, 19);
+  margin: auto;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 3%;
+  margin-top: 3%;
+}
+.s_logo p{
+  color: white;
+  font-size: 700%;
+}
+.s_profile_details{
+  margin-left: 25%;
+  display: flex;
+  padding: 10px;
+}
+.s_profile_detail1{
+  display: flex;
+  margin-left: 36%;
+}
+.s_label1{
+  font-weight: 600;
+  font-size: 20px;
+}
+.s_field1{
+  margin-left: 10px;
+}
+.s_labels{
+  padding:2%;
+  font-size: 20px;
+  font-weight: 800;
+}
+.s_fields{
+  height: 50%;
+  font-size: 20px;
+  margin-top: 1%;
+  width: 40%;
+}
+.s_profile:hover{
+  transform: scale(1.04);
+}
+hr.s_new{
+  border-top: 1px solid black;
+}
+.s_buttons,.s_box input{
+  background-color: rgb(16, 49, 16);
+  padding: 1.5% 3% 1.5% 3%;
+  color: white;
+  border:0px;
+  font-size: 18px;
+  border-radius: 15px;
+  margin-bottom: 10px;
+}
+.s_box input{
+  margin-top: 10px;
+  background-color:rgb(10, 247, 176) ;
+  color: rgb(58, 58, 58);
+}
+.s_box input:hover{
+  background-color: white;
+  border: 1px solid black;
 }

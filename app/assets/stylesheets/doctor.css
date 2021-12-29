@@ -12,6 +12,7 @@
   margin: auto;
   border-collapse: separate;
   border-spacing: 50px;
+  font-size: 24px;
 }
 .Schedule-table{
   text-align: initial;
@@ -115,7 +116,6 @@
 }
 .Details-div{
   margin-left: 60px;
-  margin-top: 50px;
 }
 .selected{
   background-color: red ;

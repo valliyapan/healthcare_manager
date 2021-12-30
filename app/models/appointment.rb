@@ -8,7 +8,7 @@ class Appointment < ApplicationRecord
   end
 
   def self.check(i,t)
-    curr_hour = DateTime.now.strftime("%H").to_i + 1
+    curr_hour = DateTime.now.in_time_zone("Chennai").strftime("%H").to_i + 1
     ((t==0 && curr_hour > i+9) || (t>3))
   end
 end

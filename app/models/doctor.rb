@@ -32,7 +32,7 @@ class Doctor < ApplicationRecord
   
   def booked(day,slot)
     appointments.where(status:  false).each do |appointment|
-      diff = ((appointment.appointment_time - DateTime.now)/(24*3600)).round
+      diff = ((appointment.appointment_time - DateTime.now)/(24*3600)).floor
       if diff == day && appointment.appointment_time.strftime("%H").to_i - 8 == slot+1
         return true
       end

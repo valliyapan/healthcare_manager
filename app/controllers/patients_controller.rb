@@ -25,7 +25,7 @@ class PatientsController < ApplicationController
 
   def unblock
     patient = Patient.find(params[:id])
-    appointment = patient.appointments.find_by(status: false)
+    appointment = patient.appointments.where("status = ? and appointment_time < ?",false,DateTime.now.in_time_zone("Chennai")).first
     appointment.update(status: true)
     patient.update(is_blocked: false)
     flash[:notice] = "Patient Unblocked Successfully!"

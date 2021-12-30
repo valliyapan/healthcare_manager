@@ -4,7 +4,7 @@ class Appointment < ApplicationRecord
   belongs_to :hospital
 
   def margin
-    (self.appointment_time-DateTime.now.in_time_zone("Chennai"))/3600>=7.30
+    ((self.appointment_time-DateTime.now.in_time_zone("Chennai"))/3600)>=7.50
   end
 
   def self.check(i,t)
